@@ -1,0 +1,87 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "舍九项目文档",
+  "colors": {
+    "primary": "#2563EB",
+    "light": "#60A5FA",
+    "dark": "#1E40AF"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "项目文档",
+        "groups": [
+          {
+            "group": "开始",
+            "pages": [
+              "index"
+            ]
+          },
+          {
+            "group": "开发记录",
+            "pages": [
+              "changelog"
+            ]
+          },
+          {
+            "group": "技术方案",
+            "pages": [
+              "captcha"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "示例页",
+        "groups": [
+          {
+            "group": "Mintlify 官方示例",
+            "pages": [
+              "quickstart"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "团队记忆",
+          "href": "http://192.168.1.201:8125",
+          "icon": "brain"
+        },
+        {
+          "anchor": "Mintlify 文档",
+          "href": "https://mintlify.com/docs",
+          "icon": "book-open-cover"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "测试环境",
+      "href": "http://192.168.1.202"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {}
+  }
+}

@@ -1,0 +1,95 @@
+---
+title: "前端变更记录"
+description: "舍九前端（Vue2 + Element UI）改动明细"
+icon: "clock-rotate-left"
+---
+
+<Note>
+  来源：仓库 `README.md`。每次改动需同步维护此记录。
+</Note>
+
+## 2026-08-24
+
+<Update label="2026-08-24" tags={["红包模块"]}>
+  **红包列表行高统一**
+
+  `src/views/wiseman/redpacket/RedpacketListDialog.vue`
+
+  数据行统一 96px、表头 44px；名称/面额/状态/进度/操作各卡片与按钮铺满行高，避免倒计时三行或空操作格导致行高不一致。
+
+  ✅ 验证：打开红包列表抽屉目视确认各行高度一致
+</Update>
+
+<Update label="2026-08-24" tags={["红包模块"]}>
+  **新建红包设置表单**
+
+  `CreateRedpacketDialog.vue`, `createRedpacketFormText.js`
+
+  新建红包弹窗改为「新建红包设置」表单：面额及数量（含本次金额）、基础信息、投领参数、自动任务开关。标题区域增加顶部间距。
+</Update>
+
+## 2026-08-22
+
+<Update label="2026-08-22" tags={["红包模块"]}>
+  **红包弹窗改抽屉**
+
+  `src/views/wiseman/redpacket/index.vue`
+
+  红包单元格弹窗改为右侧抽屉（`el-drawer`），并修复 RedpacketListDialog 中文乱码；仅红包列使用该抽屉，其他功能列仍用原设置弹窗。
+</Update>
+
+## 2026-08-21
+
+<Update label="2026-08-21" tags={["公海商品"]}>
+  **折线图消失修复**
+
+  `src/views/highseas/seasProduct/seasList.vue`
+
+  展开/收起会触发 `doLayout` 与品牌合并单元格重排，echarts 容器被重建后原先只重绘子表、未重绘主表；改为布局稳定后统一调用 `initAllCharts` / `initSubCharts`。
+</Update>
+
+<Update label="2026-08-21" tags={["公海商品"]}>
+  **置顶标识 + 刷新次数提示**
+
+  - `handlePriorityPinned == 1` 时品牌列展示红色「置顶」标识；flatten 时保留该字段
+  - 手动刷新按钮悬停提示：按「今日剩余品牌 ÷ 30」向上取整估算剩余刷新次数（62 → 3 次）
+  - 「全部」平台不再前端按 `brandId + brandRound` 重排，与接口返回顺序一致
+</Update>
+
+## 2026-08-20
+
+<Update label="2026-08-20" tags={["财务", "运营中心"]}>
+  **5天均 → 7天均**
+
+  财务详情 4 个页面（financialDetails / Company / Fluencer / Selector）均值文案统一调整为「7天均金额/单量/战绩」。
+
+  运营中心同步：均值改 7 天、剩余坑位双列紧凑展示、标签筛选改多选数组（查询时转逗号分隔）。
+</Update>
+
+<Update label="2026-08-20" tags={["商品编辑"]}>
+  **补贴输入框样式**
+
+  10 个 `ProductEditDialog.vue`（operation/center、under、product/fail、info、product、productSelectionDatabase、productTemp、reviewInterface、reviewInterfacefinal、reviewInterfaceing）
+
+  新增 `subsidy-input` 样式，收紧左右内边距并调小字号。
+</Update>
+
+## 2026-08-18
+
+<Update label="2026-08-18" tags={["运营中心"]}>
+  **达人多选筛选**
+
+  `src/views/operation/center/index.vue`
+
+  - 新增页面内达人多选筛选，与全局单选达人 ID 分离
+  - 请求参数由 `filterInfluencerDouyinId` 调整为 `influencerDouyinIds`（逗号分隔）
+  - 暂时注释 `listTopYesterdayProfitForMonitor` 相关逻辑
+</Update>
+
+## 2026-08-17 / 08-15
+
+<Update label="更早" tags={["选品库", "品牌展示"]}>
+  - **倒计时逻辑**：改用 `lockTime`（开始）和 `expireTime`/`expiretime`（结束）分段判断，兼容接口小写字段名
+  - **品牌展示规则**：仅一个有值时用该值；两者都有则英文在前、中文在后，用 `/` 连接
+  - **审核底部操作栏**：改 `space-between` flex 布局，「通过」贴右
+</Update>

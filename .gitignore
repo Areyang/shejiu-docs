@@ -1,0 +1,12 @@
+# Mintlify 本地预览产物
+.mint/
+node_modules/
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
