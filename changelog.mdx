@@ -8,6 +8,70 @@ icon: "clock-rotate-left"
   来源：仓库 `README.md`。每次改动需同步维护此记录。
 </Note>
 
+## 2026-08-27
+
+<Update label="2026-08-27" tags={["红包模块"]}>
+  **矩阵红包格进度展示**
+
+  `src/views/wiseman/redpacket/index.vue`
+
+  - 红包格按 `anchorRedpacketInfluencerList` 展示进度：`activityStatus` 状态色、`remainSec` 倒计时、无限循环/`issuedCount/issueCount`；无任务显示「未开启」
+  - 倒计时文案补全「X 秒后生成下一轮红包」，按设计拆两行「X 秒后」+「生成下一红包」，同步保留活动状态
+</Update>
+
+<Update label="2026-08-27" tags={["财务战绩记录"]}>
+  **战绩记录详情抽屉全套**
+
+  `src/views/financial/record/`（RecordDetailDrawer / index / AddRecordDialog / recordDetailText / addRecordDialogText）
+
+  - 点击「详情」弹出独立抽屉：日期区间/汇总/筛选/列表列（时间、消耗、对应人、品牌、商品、渠道、说明）
+  - 修复点击详情不请求接口：去掉 `companyId` 空值 return，`$nextTick` 拉 `pointRecordList`
+  - 剩余战绩改为打开时请求 `getPointTotal`；日期区间与接口 `beginTime` 对齐同一天
+  - 对齐 `RecordPoolDrawer`：接口 `pointRecordList`（companyId/beginTime/lockSource），列对应时间/战绩/品牌名/商品名/选品人/锁定渠道/备注
+  - 「添加战绩」弹窗对齐：操作类型/数量/选品人/备注，提交走 `pointRecord`
+  - 抽屉宽度两次调整至 1600px、列宽对齐优化
+</Update>
+
+<Update label="2026-08-27" tags={["红包模块", "couponStatus"]}>
+  **couponStatus -2「待获取」全站补充**
+
+  18 个页面（operation/center、under、showcase、product/fail、info、product、productSelectionDatabase、productTemp、reviewInterface、reviewInterfacefinal、reviewInterfaceing、wiseman/nowise、wiseman/wiseman、wisefail、wiseout 等）
+
+  所有涉及 `couponStatus` 展示/判断的页面补充 `-2` 状态为「待获取」，编辑弹窗中按不可操作处理。
+
+  **红包新建/列表细节**
+  - 「发放次数」改下拉框：无限、1、10、50、100、200、300（默认无限→`issueCountType=1`）
+  - 新建红包校验：本次金额（面额×数量）不能超可用金额（`balance_display`）；数字项仅整数；`influencerId` 必传
+  - 间隔固定 61 秒不可编辑；红包名称默认「普通倒计时+YYYYMMDD」
+  - 列表对接 `anchorRedpacketList`：开启/关闭走 `start`/`close`，未生效/投放中进当前列表，作废/结束进历史
+  - 倒计时到 5s/0s 自动静默刷新；`nextRoundRemainSec` 本地秒级倒计时；空态「暂无数据」行
+  - 文案乱码修复：倒计时/loading 文案改由 `redpacketListText.js` 统一维护
+</Update>
+
+## 2026-08-26
+
+<Update label="2026-08-26" tags={["红包模块"]}>
+  **红包列表改版 + 新建红包细节**
+
+  `src/views/wiseman/redpacket/`
+
+  - 列表改版：表头「基础信息」，名称/进度支持计划问号浮层，操作改为作废/停止(可切开启)/删除
+  - 「弹窗讲解」打开专用抽屉，自定义讲解区点「+」叠加坑位行
+  - 可用金额 `availableAmount` 改为点「新建」时触发；提交 `redPacketTask` 前校验 influencerId
+  - 发放次数默认「无限次」可编辑；预热固定 1 分钟；`issueCountType`：无限=1、有限=0
+  - 提交增加 loading + `submitting` 防重复点击
+</Update>
+
+## 2026-08-25
+
+<Update label="2026-08-25" tags={["红包模块"]}>
+  **红包矩阵页对接接口**
+
+  `src/views/wiseman/redpacket/index.vue`
+
+  对接 `anchorRedpacketInfluencerList`，参数 `companyDeptId` 取全局 `companyId`；接入公司切换 EventBus（`changeCompanyId`）；`deptName` 作行名（含「红」为红标）。
+</Update>
+
 ## 2026-08-24
 
 <Update label="2026-08-24" tags={["红包模块"]}>
