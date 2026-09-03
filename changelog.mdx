@@ -8,6 +8,100 @@ icon: "clock-rotate-left"
   来源：仓库 `README.md`。每次改动需同步维护此记录。
 </Note>
 
+## 2026-09-03
+
+<Update label="2026-09-03" tags={["公海评论看板"]}>
+  **公海评论看板完善**
+
+  `src/views/highseas/comments/`（index.vue / CommentDetailDialog.vue / CommentScrollRow.vue / mockComments.js / mockCommentDetail.js）
+
+  - 表头增加品牌/店铺/商品搜索，按「仅品牌」「店铺无商品」「店铺+商品」合并列表单元格
+  - 点击评论原因打开右侧详情抽屉，按品牌-店铺-商品树展示历史状态
+  - 支持横向拖拽/左右箭头滚动、状态复制和商品 ID 复制
+</Update>
+
+<Update label="2026-09-03" tags={["团队记忆"]}>
+  **团队记忆文档更新**
+
+  `team-memory/`（红包任务接口、前端文案/编码、战绩统计、公海评论看板 + README 索引）
+
+  - 补充战绩统计正负值展示与公海评论看板实现约定，新增评论看板专项文档并更新索引
+</Update>
+
+## 2026-09-02
+
+<Update label="2026-09-02" tags={["公海评论看板"]}>
+  **新增公海评论看板基础页面**
+
+  `src/store/modules/permission.js` / `src/views/highseas/comments/`
+
+  - 新增公海评论看板基础页面与 mock 数据，支持日期范围、公司/选品人维度初始化
+  - 路由加载增加零宽字符清理（U+200B-U+200D/U+FEFF），兼容后台菜单路径异常字符
+</Update>
+
+<Update label="2026-09-02" tags={["战绩统计"]}>
+  **战绩统计权限与刷新**
+
+  `src/views/financial/record/index.vue`
+
+  - 「添加战绩」按 `highseas:seasProduct:add` 权限显示，无权限保留空白占位
+  - 拉取消耗统计前先清空列表，避免旧数据残留
+</Update>
+
+<Update label="2026-09-02" tags={["红包模块"]}>
+  **红包倒计时联动**
+
+  `index.vue` / `RedpacketListDialog.vue`
+
+  - 矩阵与列表抽屉倒计时联动：外层倒计时传入列表抽屉，倒计时到 0 秒静默刷新
+  - 新建/作废/启停/删除后同步刷新父级矩阵
+  - 列表进度倒计时拆成「X 秒后」和「生成下一红包」两行
+</Update>
+
+## 2026-09-01
+
+<Update label="2026-09-01" tags={["文字控场/弹窗讲解"]}>
+  **文字控场与弹窗讲解对接接口**
+
+  `wiseman.js` / `LiveCommentDialog.vue` / `PopupExplainDialog.vue` / `index.vue`
+
+  - 新增详情/保存/新增/修改请求，抽屉打开时加载配置
+  - 运行态禁用表单，点击状态按钮直接保存并切换启停
+  - 矩阵单元格展示运行配置并在保存后刷新
+</Update>
+
+<Update label="2026-09-01" tags={["战绩统计"]}>
+  **战绩统计接入 dailyConsumeStat**
+
+  `highseas.js` / `financial/record/index.vue` / `RecordDetailDrawer.vue` / `pointValueFormat.js`
+
+  - 按公司/选品人维度拉取日消耗
+  - 新增正负值格式化工具：列表消耗统一负数，详情明细按接口符号展示并在加载后重新求和
+</Update>
+
+<Update label="2026-09-01" tags={["战绩池入口"]}>
+  **公海战绩池入口改用财务抽屉**
+
+  `seasProduct/index.vue` / `seasProduct/seasList.vue`
+
+  - 「战绩池」入口改用 `RecordDetailDrawer`，默认日期前天至今天，透传公司与选品人参数
+</Update>
+
+<Update label="2026-09-01" tags={["红包/运营"]}>
+  **红包与运营展示补充**
+
+  - 红包矩阵和列表补充固定面额、列顺序与运行态样式
+  - 运营下架列表按 `influencerDouyinId` 匹配达人名称标签
+</Update>
+
+<Update label="2026-09-01" tags={["团队记忆"]}>
+  **新增团队记忆文档体系**
+
+  `team-memory/`（01 红包任务 ~ 08 战绩统计 + README 索引）
+
+  - 整理红包任务、历史记录、新建红包、文字控场、弹窗讲解、列表交互、文案编码、战绩统计模块约定
+</Update>
+
 ## 2026-08-29
 
 <Update label="2026-08-29" tags={["红包模块-历史记录"]}>
